@@ -1,6 +1,6 @@
 create database blog;
-CREATE USER 'blog'@'%' IDENTIFIED BY 'Blog@123';
-GRANT ALL PRIVILEGES ON * . * TO 'blog'@'%';
+CREATE USER 'blog'@'%' IDENTIFIED with mysql_native_password BY 'Blog@123';
+GRANT ALL PRIVILEGES ON *.* TO 'blog'@'%';
 flush PRIVILEGES;
 use blog;
 CREATE TABLE IF NOT EXISTS post (

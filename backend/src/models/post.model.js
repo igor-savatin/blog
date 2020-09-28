@@ -39,7 +39,7 @@ Post.create =(newPost, result) => {
     })
 }
 
-Post.update = (id, bill, result) =>{
+Post.update = (id, post, result) =>{
     dbConnection.query('update post set title=?,text=? where id=?',
     [post.title,post.text,post.id],
     (err, res) => {
