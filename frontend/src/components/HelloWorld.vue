@@ -1,8 +1,8 @@
 <template>
   <div class="hello">
-    <b-navbar toggleable="lg" type="dark" variant="info">
+    <!-- <b-navbar toggleable="lg" type="dark" variant="info">
       <b-navbar-brand href="#">NavBar</b-navbar-brand>
-    </b-navbar>
+    </b-navbar> -->
     <h1>{{ msg }}</h1>
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
