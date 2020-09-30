@@ -9,7 +9,7 @@ export const store = new Vuex.Store({
             {
                 id:1,
                 title: "Titulo 1",
-                text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id, explicabo consequuntur dolorum sed provident cum reiciendis quos necessitatibus ab omnis quaerat, quis laudantium aliquam deleniti maxime quibusdam consequatur impedit neque!"
+                text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id, explicabo consequuntur dolorum sed provident cum reiciendis quos necessitatibus ab omnis quaerat, quis laudantium aliquam deleniti maxime quibusdam consequatur impedit neque! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id, explicabo consequuntur dolorum sed provident cum reiciendis quos necessitatibus ab omnis quaerat, quis laudantium aliquam deleniti maxime quibusdam consequatur impedit neque! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id, explicabo consequuntur dolorum sed provident cum reiciendis quos necessitatibus ab omnis quaerat, quis laudantium aliquam deleniti maxime quibusdam consequatur impedit neque! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id, explicabo consequuntur dolorum sed provident cum reiciendis quos necessitatibus ab omnis quaerat, quis laudantium aliquam deleniti maxime quibusdam consequatur impedit neque!"
             },
             {
                 id:2,
@@ -21,15 +21,16 @@ export const store = new Vuex.Store({
                 title: "Titulo 3",
                 text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id, explicabo consequuntur dolorum sed provident cum reiciendis quos necessitatibus ab omnis quaerat, quis laudantium aliquam deleniti maxime quibusdam consequatur impedit neque!"
             },
-        ]
+        ],
+        isLogged: false
     }, 
     mutations: {
-        add(state, cnt){
-            state.cnt = cnt
+        changeLogin (state) {
+            state.isLogged = !state.isLogged
+        },
+        updatePost (state,Post) {
+            console.log(Post.text);
         }
-    }, 
-    getters: { 
-        cnt: state => state.cnt
     }
 })
 

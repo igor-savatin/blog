@@ -1,11 +1,27 @@
 <template>
   <div id="app">
-    <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <Header nameBlog="teste"/>
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    
-    <b-container class="posts">
-      <ListPosts/>
+    <br>
+    <b-container>
+      <b-row align-v="stretch">
+        <b-col cols="10">
+          <b-container>
+            <b-container  class="container" style="color:black;height: 100px;width: 800px; border:1px solid black;">
+              aqui
+            </b-container>
+          <br>
+            <b-container fluid class="posts container">
+              
+              <ListPosts/>
+            </b-container>
+          </b-container>
+        </b-col>
+        <b-col>
+          <b-container  class="container" style="color:black;height: 800px;width: 100px; border:1px solid black;">
+            aqui
+          </b-container>
+        </b-col>
+      </b-row>
     </b-container>
   </div>
 </template>
@@ -34,6 +50,5 @@ export default {
 }
 .posts {
   border: 1px solid black;
-
 }
 </style>
