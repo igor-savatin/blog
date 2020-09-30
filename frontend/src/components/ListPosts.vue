@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-for="item in $store.state.posts" :key="item.id">
-            <h1>{{item.title}}</h1>
+            <h2>{{item.title}}</h1>
             <p>{{item.text}}</p>
         </div>
   </div>
