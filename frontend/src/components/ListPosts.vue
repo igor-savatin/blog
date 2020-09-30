@@ -1,18 +1,15 @@
 <template>
-  <div>
-      {{list}}
-      oi
+    <div>
+        <div v-for="item in $store.state.posts" :key="item.id">
+            <h1>{{item.title}}</h1>
+            <p>{{item.text}}</p>
+        </div>
   </div>
 </template>
 
 <script>
 export default {
     name: 'ListPosts'
-    ,data () {
-        return {
-            list: [1,2,3]
-        }
-    }
 }
 </script>
 

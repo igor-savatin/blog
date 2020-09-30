@@ -3,16 +3,16 @@
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <Header nameBlog="teste"/>
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    {{ $store.getters.cnt }}
-    <div>
+    
+    <b-container class="posts">
       <ListPosts/>
-    </div>
+    </b-container>
   </div>
 </template>
 
 <script>
-import Header from './components/Header.vue'
-import ListPosts from './components/ListPosts.vue'
+import Header from '@/components/Header.vue'
+import ListPosts from '@/components/ListPosts.vue'
 
 export default {
   name: 'App',
@@ -31,5 +31,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   /* margin-top: 60px; */
+}
+.posts {
+  border: 1px solid black;
+
 }
 </style>
