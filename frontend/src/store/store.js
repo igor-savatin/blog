@@ -30,6 +30,10 @@ export const store = new Vuex.Store({
         },
         updatePost (state,Post) {
             console.log(Post.text);
+            let index = state.posts.findIndex((postArr) => {
+                return postArr.id == Post.id
+            })
+            state.posts[index] = Post;
         }
     }
 })

@@ -7,7 +7,11 @@
         <b-container  v-for="(post,index) in $store.state.posts" :key="post.id" v-bind:id="'cnt_'+index">
             <div class="row">
                 <h3>{{post.title}}</h3>
-                <buttonEditPost v-if="$store.state.isLogged" v-model="post[index]" v-bind:Post='post'/>
+                <buttonEditPost 
+                v-if="$store.state.isLogged" 
+                v-model="post[index]" 
+                v-bind='post'
+                />
             </div>
             <p class="text">
                 {{post.text | truncate(200)}} 

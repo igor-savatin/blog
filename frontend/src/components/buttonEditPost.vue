@@ -1,32 +1,35 @@
 <template>
     <div id="buttonEditPost">
-        <b-button variant="primary" v-b-modal="'modal-'+Post.id" v-bind:id="'btn-modal-'+Post">
+        <b-button variant="primary" v-b-modal="'modal-'+id" v-bind:id="'btn-modal-'+id">
             <b-icon icon="pencil"></b-icon> Alterar
         </b-button>
         <!-- The modal -->
-        <b-modal v-bind:id="'modal-'+Post.id" v-bind:title="Post.title" >
+        <b-modal v-bind:id="'modal-'+id" v-bind:title="title" >
             <template #modal-header>
                 <p>
                     Titulo Post:
-                    <input type="text" v-bind:value="Post.title">
+                    <input type="text" v-model="newPost.title" v-bind:id="'input-'+id">
                 </p>
             </template>
             <b-form-textarea
-                id="textarea"
+                v-bind:id="'textarea-'+id"
                 placeholder="Enter something..."
                 rows="6"
                 max-rows="10"
-                v-model=Post.text
+                v-bind:value=text
+                v-model="newPost.text"
             >
+            
             </b-form-textarea>
-            <template v-slot:modal-footer="{ cancel }">
-                <b-button size="sm" variant="success" @click="$store.commit('updatePost',Post)">
+            <template v-slot:modal-footer="{ cancel,addPost }">
+                <b-button size="sm" variant="success" @click="addPost">
                 Salvar
                 </b-button>
                 <b-button size="sm" variant="danger" @click="cancel()">
                 Cancelar
                 </b-button>
             </template>
+            {{ newPost }}
         </b-modal>
     </div>
 </template>
@@ -35,11 +38,22 @@
 export default {
     name: 'buttonEditPost',
     props:{
-        Post: {}
+        id: Number,
+        title: String,
+        text: String,
+    },
+    data() {
+        return {
+            newPost: {
+                id: this.id,
+                title: this.title,
+                text: this.text
+            }   
+        }
     },
     methods :{
-        check(){
-            console.log(this.Post);
+        addPost: ()=>{
+            console.log(this.newPost);
         }
     }
 }
