@@ -1,14 +1,15 @@
 <template>
     <div>
-        
         <!-- <b-button class="float-right" v-if="$store.state.isLogged">Adicionar Post</b-button> -->
         <p></p>
+        
         <!-- <ModalAlterPost v-model="post[index]" v-bind:idPost='post'/> -->
-        <b-container  v-for="(post,index) in $store.state.posts" :key="post.id" v-bind:id="'cnt_'+index">
+        <b-container  v-for="(post,index) in posts" v-bind:key="index" v-bind:id="'cnt_'+index">
+            
             <div class="row">
                 <h3>{{post.title}}</h3>
                 <buttonEditPost 
-                v-if="$store.state.isLogged" 
+                v-if="isLogged" 
                 v-model="post[index]" 
                 v-bind='post'
                 />
@@ -24,12 +25,25 @@
 
 <script>
 import buttonEditPost from './buttonEditPost'
+import { mapState, mapActions } from 'vuex';
 
 export default {
     name: 'ListPosts',
+    
     components: {
         buttonEditPost
+    },
+    computed: mapState({        
+            isLogged: state => state.isLogged,
+            posts: state => state.posts
+    }),
+    methods: {
+        ...mapActions(['loadPosts'])
+    },    
+    mounted(){
+        this.loadPosts()
     }
+   
 }
 </script>
 

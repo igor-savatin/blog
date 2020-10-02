@@ -21,20 +21,23 @@
             >
             
             </b-form-textarea>
-            <template v-slot:modal-footer="{ cancel,addPost }">
-                <b-button size="sm" variant="success" @click="addPost">
+            <template v-slot:modal-footer="{ cancel }">
+                <!-- <b-button size="sm" variant="success" @click="updatePost(newPost)"> -->
+                <b-button size="sm" variant="success" @click="updatePost(newPost)">
+                    <!-- this.$store.commit("testMutation", { msg: "Test Commit" }) -->
                 Salvar
                 </b-button>
                 <b-button size="sm" variant="danger" @click="cancel()">
                 Cancelar
                 </b-button>
             </template>
-            {{ newPost }}
+            {{ newPost.title }}
         </b-modal>
     </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
     name: 'buttonEditPost',
     props:{
@@ -54,7 +57,10 @@ export default {
     methods :{
         addPost: ()=>{
             console.log(this.newPost);
-        }
+        },
+        ...mapActions(['updatePost'])
+        
+            // this.$store.commit('updatePost',this.newPost)
     }
 }
 </script>

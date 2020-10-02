@@ -3,12 +3,12 @@
         <b-navbar class="dark" toggleable="lg" type="dark" variant="dark">
             <img href="#" alt="logo" class="d-inline-block align-top" src='../assets/logo_teste.png' width="50" height="50">
             <b-navbar-brand tag="h1" href="#" style="margin-left:10px">
-                {{nameBlog}}
+                {{ nameBlog }}
             </b-navbar-brand>
             
             <b-nav-item right href="#" class="ml-auto">
-                <b-button  size="sm" class="my-2 my-sm-0" type="submit" v-on:click="$store.commit('changeLogin')">
-                {{ !$store.state.isLogged ? 'Login' : 'Logoff' }}    
+                <b-button  size="sm" class="my-2 my-sm-0" type="submit" v-on:click="changeLogin">
+                {{ !isLogged ? 'Login' : 'Logoff' }}    
                 </b-button>
                 
             </b-nav-item>
@@ -17,10 +17,19 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
 export default {
     name: 'Header',
     props: {
         nameBlog: String
+    },
+    computed: mapState ({
+        isLogged: state => state.mapState 
+    }),
+    methods: {
+        ...mapActions([
+            'changeLogin'
+        ])
     }
 }
 </script>
