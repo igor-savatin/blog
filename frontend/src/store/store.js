@@ -38,11 +38,31 @@ export const store = new Vuex.Store({
             let newIsLogged = !this.state.isLogged 
             commit('changeLogin',{ newIsLogged } )
         },
-        updatePost({ commit }, newPost){
-            let index = this.state.posts.findIndex((postArr) => {
-                return postArr.id == newPost.id
-            })
-            commit('updatePost', { newPost, index });
+        async updatePost({dispatch},newPost){
+            await axios({url: 'http://localhost:3000/api/v1/post/'+newPost.id,
+                     method: 'put',
+                     data: newPost
+                     })
+                    .then(response => response.data)
+                    .catch(res => {console.log(res)})
+            dispatch('loadPosts') 
+        },
+        async insertPost( { dispatch }, newPost){
+            await axios({url: 'http://localhost:3000/api/v1/post/',
+                method: 'post',
+                data: newPost
+                })
+            .then(response => response.data)
+            .catch(res => {console.log(res)})
+            dispatch('loadPosts')
+        },
+        async deletePost( { dispatch }, id){
+            await axios({url: 'http://localhost:3000/api/v1/post/'+id,
+                method: 'delete'
+                })
+            .then(response => response.data)
+            .catch(res => {console.log(res)})
+            dispatch('loadPosts')
         }
     },
     mutations: {
@@ -51,13 +71,6 @@ export const store = new Vuex.Store({
         },
         changeLogin (state, { newIsLogged }) {
             state.isLogged = newIsLogged
-        },
-        updatePost (state,{
-            newPost,
-            index
-        }) {
-            // state.posts[index] = newPost
-            Vue.set(state.posts, index, newPost)
         }
     },
     getters: {

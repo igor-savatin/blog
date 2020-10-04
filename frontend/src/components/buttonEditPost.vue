@@ -1,19 +1,25 @@
 <template>
     <div id="buttonEditPost">
-        <b-button variant="primary" v-b-modal="'modal-'+id" v-bind:id="'btn-modal-'+id">
-            <b-icon icon="pencil"></b-icon> Alterar
+        <b-button v-if="action==='update'" variant="primary" v-b-modal="'modal-'+id" v-bind:id="'btn-modal-'+id">
+            <b-icon icon="pencil-square"/>  {{label}}
+        </b-button>
+        <b-button v-if="action==='add'" variant="success" v-b-modal="'modal-'+id" v-bind:id="'btn-modal-'+id">
+            <b-icon icon="plus-square"/> {{label}}
+        </b-button>
+        <b-button v-if="action==='delete'" variant="danger" v-bind:id="'btn-modal-'+id" @click="deletePost(id)">
+            <b-icon icon="x-circle"/> {{label}}
         </b-button>
         <!-- The modal -->
         <b-modal v-bind:id="'modal-'+id" v-bind:title="title" >
             <template #modal-header>
                 <p>
                     Titulo Post:
-                    <input type="text" v-model="newPost.title" v-bind:id="'input-'+id">
+                    <input placeholder="Digite o titulo" type="text" v-model="newPost.title" v-bind:id="'input-'+id">
                 </p>
             </template>
             <b-form-textarea
                 v-bind:id="'textarea-'+id"
-                placeholder="Enter something..."
+                placeholder="Digite o Post..."
                 rows="6"
                 max-rows="10"
                 v-bind:value=text
@@ -23,15 +29,12 @@
             </b-form-textarea>
             <template v-slot:modal-footer="{ cancel }">
                 <!-- <b-button size="sm" variant="success" @click="updatePost(newPost)"> -->
-                <b-button size="sm" variant="success" @click="updatePost(newPost)">
-                    <!-- this.$store.commit("testMutation", { msg: "Test Commit" }) -->
-                Salvar
-                </b-button>
+                <b-button v-if="newPost.id" size="sm" variant="success" @click="updatePost(newPost)">Salvar</b-button>
+                <b-button v-else size="sm" variant="success" @click="insertPost(newPost)">Criar Post</b-button>
                 <b-button size="sm" variant="danger" @click="cancel()">
                 Cancelar
                 </b-button>
             </template>
-            {{ newPost.title }}
         </b-modal>
     </div>
 </template>
@@ -44,6 +47,8 @@ export default {
         id: Number,
         title: String,
         text: String,
+        label: String,
+        action: String
     },
     data() {
         return {
@@ -55,12 +60,7 @@ export default {
         }
     },
     methods :{
-        addPost: ()=>{
-            console.log(this.newPost);
-        },
-        ...mapActions(['updatePost'])
-        
-            // this.$store.commit('updatePost',this.newPost)
+        ...mapActions(['updatePost','insertPost','deletePost'])
     }
 }
 </script>
