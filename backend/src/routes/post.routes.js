@@ -23,6 +23,7 @@ router.post('/', (req, res) => {
     
     if(req.body.constructor === Object && Object.keys(req.body).length === 0) {
         res.status(400).send({error: true, message: 'Provide all fields'})
+
     } else {
         Post.create(newPost, (err, post) => {
             if(err)
@@ -36,6 +37,7 @@ router.put('/:id', (req, res) => {
     
     if(req.body.constructor === Object && Object.keys(req.body).length ===0){
         res.status(400).send({ error:true, message: 'Provide all fields' })
+        console.log(req.body);
     } else {
         Post.update(req.params.id, new Post(req.body), (err, post) => {
             if(err){
