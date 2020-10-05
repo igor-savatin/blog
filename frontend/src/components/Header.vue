@@ -1,7 +1,7 @@
 <template>
     <div id="header">
         <b-navbar class="dark" toggleable="lg" type="dark" variant="dark">
-            <img href="#" alt="logo" class="d-inline-block align-top" src='../assets/logo_teste.png' width="50" height="50">
+            <img href="#" alt="logo" class="d-inline-block align-top" src='../assets/logo_teste.png' width="182" height="101">
             <b-navbar-brand tag="h1" href="#" style="margin-left:10px">
                 {{ nameBlog }}
             </b-navbar-brand>

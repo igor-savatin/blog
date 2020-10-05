@@ -27,8 +27,18 @@ export const store = new Vuex.Store({
         isLogged: false
     },
     actions:{
-        loadPosts ({ commit }){
-            axios.get('http://localhost:3000/api/v1/post')
+        async loadPosts ({ commit }){
+            await axios({url:'http://localhost:3000/api/v1/post',
+                    method: 'get'})
+                .then(response => response.data)
+                .then(posts => {
+                    commit('setPosts',posts)
+                })
+            
+        },
+        loadOnePost ({ commit },id){
+            axios({url:'http://localhost:3000/api/v1/post/'+id,
+                    method:'get'})
                 .then(response => response.data)
                 .then(posts => {
                     commit('setPosts',posts)

@@ -29,7 +29,8 @@
             </div>
             <p class="text">
                 {{post.text | truncate(200)}} 
-                <a href="#">Read more</a> 
+                
+                <router-link :to="{name: 'post', params: {id: post.id}}">Read more</router-link>
             </p>
         </b-container>
         
