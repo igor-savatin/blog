@@ -6,9 +6,7 @@
         <b-button v-if="action==='add'" variant="success" v-b-modal="'modal-'+id" v-bind:id="'btn-modal-'+id">
             <b-icon icon="plus-square"/> {{label}}
         </b-button>
-        <b-button v-if="action==='delete'" variant="danger" v-bind:id="'btn-modal-'+id" @click="deletePost(id)">
-            <b-icon icon="x-circle"/> {{label}}
-        </b-button>
+       
         <!-- The modal -->
         <b-modal v-bind:id="'modal-'+id" v-bind:title="title" >
             <template #modal-header>
@@ -60,7 +58,7 @@ export default {
         }
     },
     methods :{
-        ...mapActions(['updatePost','insertPost','deletePost'])
+        ...mapActions(['updatePost','insertPost'])
     }
 }
 </script>

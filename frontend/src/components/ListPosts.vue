@@ -19,12 +19,10 @@
                     label="Atualizar Post"
                     action="update"
                 />
-                <buttonEditPost 
+                <buttonDeletePost 
                     v-if="isLogged" 
                     v-model="post[index]" 
                     v-bind='post'
-                    label="Deletar Post"
-                    action="delete"
                 />
             </div>
             <p class="text">
@@ -39,13 +37,15 @@
 
 <script>
 import buttonEditPost from './buttonEditPost'
+import buttonDeletePost from './buttonDeletePost'
 import { mapState, mapActions } from 'vuex';
 
 export default {
     name: 'ListPosts',
     
     components: {
-        buttonEditPost
+        buttonEditPost,
+        buttonDeletePost
     },
     computed: mapState({        
             isLogged: state => state.isLogged,
