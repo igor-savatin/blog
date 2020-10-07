@@ -15,15 +15,13 @@
                     <div class="row">
                         <buttonEditPost 
                             v-if="isLogged" 
-                            v-bind=posts[0]
-                            label="Atualizar Post"
-                            action="update"
+                            v-model="post[index]" 
+                            v-bind='post'
                         />
-                        <buttonEditPost 
+                        <buttonDeletePost 
                             v-if="isLogged" 
-                            v-model=posts[0]
-                            label="Deletar Post"
-                            action="delete"
+                            v-model="post[index]" 
+                            v-bind='post'
                         />
                     </div>
                     <div v-for="(post,index) in posts" v-bind:key="index" v-bind:id="'cnt_'+index">
@@ -46,6 +44,8 @@
 <script>
 import Header from '@/components/Header.vue'
 import buttonEditPost from './buttonEditPost'
+import buttonDeletePost from './buttonDeletePost'
+
 import { mapState, mapActions } from 'vuex';
 export default {
   name: 'BlogPost',
@@ -60,7 +60,8 @@ export default {
   },
   components: {
     Header,
-    buttonEditPost
+    buttonEditPost,
+        buttonDeletePost
   },
     computed: mapState({        
             isLogged: state => state.isLogged,

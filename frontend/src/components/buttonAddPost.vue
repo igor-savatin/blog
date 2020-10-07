@@ -1,7 +1,7 @@
 <template>
     <div id="buttonAddPost">
         <b-button variant="success" v-b-modal="'modal-add-'+id" v-bind:id="'btn-modal-add-'+id">
-            <b-icon icon="plus-square"/> {{label}}
+            <b-icon icon="plus-square"/> Adicionar Post
         </b-button>
         <b-modal v-bind:id="'modal-add-'+id" v-bind:title="title" >
             <template #modal-header>
@@ -21,7 +21,9 @@
             
             </b-form-textarea>
             <template v-slot:modal-footer="{ cancel }">
-                <b-button size="sm" variant="success" @click="insertPost(newPost)">Criar Post</b-button>
+                <p v-if="feedback" style="color:green "><b-icon icon="check" variant="success"> </b-icon> Post criado!</p>
+                
+                <b-button v-else size="sm" variant="success" @click="addPost(newPost)">Criar Post</b-button>
                 <b-button size="sm" variant="danger" @click="cancel()">
                 Cancelar
                 </b-button>
@@ -34,10 +36,31 @@
     export default {
         name:'buttonAddPost',
         props:{
-            id:Number
+            id: Number,
+            title: String,
+            text: String
+        },
+        data() {
+            return {
+                newPost: {
+                    id: this.id,
+                    title: this.title,
+                    text: this.text
+                },
+                feedback: Boolean
+            }
         },
         methods :{
-            ...mapActions(['insertPost'])
+            ...mapActions(['insertPost','loadPosts'])
+            ,addPost(newPost) {
+                this.insertPost(newPost)
+                this.loadPosts
+                this.feedback=true
+                setTimeout(() => this.feedback=false, 3000)
+            }
+        },
+        mounted(){
+            this.feedback=false
         }
     }
 </script>

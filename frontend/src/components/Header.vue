@@ -6,12 +6,12 @@
                 {{ nameBlog }}
             </b-navbar-brand>
             
-            <b-nav-item right href="#" class="ml-auto">
+            <b-navbar-brand right href="#" class="ml-auto">
                 <b-button  size="sm" class="my-2 my-sm-0" type="submit" v-on:click="changeLogin">
                 {{ !isLogged ? 'Login' : 'Logoff' }}    
                 </b-button>
                 
-            </b-nav-item>
+            </b-navbar-brand>
         </b-navbar>
     </div>
 </template>
@@ -24,12 +24,10 @@ export default {
         nameBlog: String
     },
     computed: mapState ({
-        isLogged: state => state.mapState 
+        isLogged: state => state.isLogged 
     }),
     methods: {
-        ...mapActions([
-            'changeLogin'
-        ])
+        ...mapActions(['changeLogin'])
     }
 }
 </script>

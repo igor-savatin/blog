@@ -1,23 +1,26 @@
 <template>
     <div>
-        <buttonEditPost class="float-right" 
+        <!-- <buttonEditPost class="float-right" 
             v-if="isLogged"
             v-bind="{'id':0,title:'',text:''}"
             label="Adicionar Post"
             action="add"
+        /> -->
+        <buttonAddPost
+         class="float-right" 
+            v-if="isLogged"
+            v-bind="{'id':0,title:'',text:''}"
         />
         <p></p>
         
         <p v-if="posts.length === 0">Nenhum Post!</p>
-        <b-container  v-for="(post,index) in posts" v-bind:key="index" v-bind:id="'cnt_'+index">
+        <b-container  v-for="(post,index) in posts" v-bind:key="post.id" v-bind:id="'cnt_'+post.id">
             <div class="row">
                 <h3>{{post.title}}</h3>
                 <buttonEditPost 
                     v-if="isLogged" 
                     v-model="post[index]" 
                     v-bind='post'
-                    label="Atualizar Post"
-                    action="update"
                 />
                 <buttonDeletePost 
                     v-if="isLogged" 
@@ -38,6 +41,7 @@
 <script>
 import buttonEditPost from './buttonEditPost'
 import buttonDeletePost from './buttonDeletePost'
+import buttonAddPost from './buttonAddPost'
 import { mapState, mapActions } from 'vuex';
 
 export default {
@@ -45,15 +49,17 @@ export default {
     
     components: {
         buttonEditPost,
-        buttonDeletePost
+        buttonDeletePost,
+        buttonAddPost
     },
     computed: mapState({        
-            isLogged: state => state.isLogged,
-            posts: state => state.posts
+        isLogged: state => state.isLogged,
+        posts: state => state.posts
     }),
+
     methods: {
         ...mapActions(['loadPosts'])
-    },    
+    },
     mounted(){
         this.loadPosts()
     },beforeUpdated(){
