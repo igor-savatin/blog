@@ -7,9 +7,7 @@
         <b-row align-v="stretch">
             <b-col cols="11">
                 <b-container>
-                    <b-container  class="container" style="color:black;height: 250px;width: 975px; border:1px solid black;">
-                    aqui
-                    </b-container>
+                        <BannerTop class="container"/>
                     <br>
                     <b-container fluid class="posts container">
                     <div class="row">
@@ -32,9 +30,7 @@
                 </b-container>
             </b-col>
             <b-col cols="1">
-                <b-container  class="container" style="color:black;height: 600px;width: 300px; border:1px solid black;">
-                    aqui
-                </b-container>
+                <BannerSide class="container"/>
             </b-col>
         </b-row>
     </b-container>    
@@ -43,8 +39,10 @@
 
 <script>
 import Header from '@/components/Header.vue'
-import buttonEditPost from './buttonEditPost'
+import buttonEditPost from '@/components/buttonEditPost'
 import buttonDeletePost from './buttonDeletePost'
+import BannerTop from './BannerTop.vue'
+import BannerSide from './BannerSide.vue'
 
 import { mapState, mapActions } from 'vuex';
 export default {
@@ -61,7 +59,9 @@ export default {
   components: {
     Header,
     buttonEditPost,
-        buttonDeletePost
+    buttonDeletePost,
+    BannerTop,
+    BannerSide
   },
     computed: mapState({        
             isLogged: state => state.isLogged,
