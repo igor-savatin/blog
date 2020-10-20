@@ -54,7 +54,7 @@
             ...mapActions(['insertPost','loadPosts'])
             ,addPost(newPost) {
                 this.insertPost(newPost)
-                this.loadPosts
+                this.loadPosts()
                 this.feedback=true
                 setTimeout(() => this.feedback=false, 3000)
             }

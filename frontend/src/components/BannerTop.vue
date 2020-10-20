@@ -18,14 +18,13 @@ export default {
                 window.googletag.cmd.push(
                     function() {
                         window.googletag.display('div-banner-top-1');
-                    });
-            `,
+                    });`,
             adUnits : {
-                    code: '/19968336/header-bid-tag-1',
+                    code: '/19968336/header-bid-tag-0',
                     mediaTypes: {
                         banner: {
-                            sizes: [[728, 90],
-                                    [970, 250]]
+                            sizes: [[728, 90]
+                                    ]
                         }
                     },
                     bids: [{
@@ -53,7 +52,8 @@ export default {
             });
         }
         window.pbjs.que.push(function() {
-            window.pbjs.addAdUnits(window.adUnits);
+            window.pbjs.addAdUnits(params);
+            console.log('AQUI PORRA: ', params);
             window.pbjs.requestBids({
                 bidsBackHandler: initAdserver,
                 timeout: timeoutBanner

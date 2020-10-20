@@ -16,7 +16,8 @@
             ...mapActions(['deletePost','loadPosts']),
             dropPost(id) {
                 this.deletePost(id)
-                this.loadPosts()
+                setTimeout(() => this.loadPosts(), 100)
+                
             }
         }
     }

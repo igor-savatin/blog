@@ -56,10 +56,9 @@ export default {
         ...mapActions(['updatePost','loadPosts'])
         , atualizarPost(newPost) {
             this.updatePost(newPost)
-            this.loadPosts()
             this.feedback=true
             setTimeout(() => this.feedback=false, 3000)
-            
+            this.loadPosts()
         }
     },
     mounted(){
